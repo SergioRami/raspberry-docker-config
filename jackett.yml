@@ -1,0 +1,16 @@
+version: "2.1"
+services:
+  jackett:
+    image: ghcr.io/linuxserver/jackett
+    container_name: jackett
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+      - AUTO_UPDATE=true
+    volumes:
+      - ${HOME_DIR}/docker-config/jackett/config:/config
+      - ${HOME_DIR}/downloads:/downloads
+    ports:
+      - 9117:9117
+    restart: unless-stopped

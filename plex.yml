@@ -1,0 +1,15 @@
+version: "2.1"
+services:
+  plex:
+    image: ghcr.io/linuxserver/plex
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VERSION=docker
+    volumes:
+      - ${HOME_DIR}/plex:/config
+      - ${HOME_DIR}/series:/tv
+      - ${HOME_DIR}/movies:/movies
+    restart: unless-stopped

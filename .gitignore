@@ -1,0 +1,32 @@
+# Example .gitignore file for your config dir.
+# An * ensures that everything will be ignored.
+
+# Ignore folders.
+bazarr/
+calibre/
+influxdb/
+jackett/
+nginx/
+qbittorrent/
+radarr/
+readarr/
+sonarr/
+tautulli/
+telegraf/
+
+#[Grafana]
+grafana/config/grafana.ini
+grafana/config/ldap.toml
+grafana/data/
+grafana/home/
+grafana/logs/
+grafana/plugins/
+
+# You can whitelist files/folders with !, these will not be ignored.
+!*.yml
+!.gitignore
+!*.md
+!grafana/config/provisioning
+
+# Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
+.env

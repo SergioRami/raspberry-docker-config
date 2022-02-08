@@ -1,0 +1,886 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 3,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "fBKzXRWgz"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisGridShow": true,
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 25,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "smooth",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "area"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 2.3
+                },
+                {
+                  "color": "red",
+                  "value": 4.6
+                }
+              ]
+            },
+            "unit": "kwatth"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 11,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "pluginVersion": "8.3.2",
+        "targets": [
+          {
+            "alias": "Consumo máximo por hora",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "fBKzXRWgz"
+            },
+            "groupBy": [
+              {
+                "params": [
+                  "1h"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "kWh",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "max"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "entity_id",
+                "operator": "=",
+                "value": "consumo_casa_hourly_energy"
+              }
+            ]
+          }
+        ],
+        "title": "Consumo casa",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "fBKzXRWgz"
+        },
+        "description": "Temperatura registrada en la casa",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 13,
+              "gradientMode": "opacity",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "smooth",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 3,
+              "pointSize": 8,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "celsius"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 8
+        },
+        "id": 9,
+        "options": {
+          "legend": {
+            "calcs": [
+              "lastNotNull",
+              "mean"
+            ],
+            "displayMode": "table",
+            "placement": "right"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "targets": [
+          {
+            "alias": "Temperatura AEMET",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "fBKzXRWgz"
+            },
+            "groupBy": [],
+            "hide": false,
+            "measurement": "°C",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "Temperatura AEMET",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "entity_id",
+                "operator": "=",
+                "value": "aemet_temperature"
+              }
+            ]
+          },
+          {
+            "alias": "Temperatura dormitorio",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "fBKzXRWgz"
+            },
+            "groupBy": [],
+            "measurement": "°C",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "Temperatura Dormitorio",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "entity_id",
+                "operator": "=",
+                "value": "ble_temperature_dormitorio"
+              }
+            ]
+          },
+          {
+            "alias": "Temperatura Salón",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "fBKzXRWgz"
+            },
+            "groupBy": [],
+            "hide": false,
+            "measurement": "°C",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "Temperatura Salón",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "entity_id",
+                "operator": "=",
+                "value": "ble_temperature_salon"
+              }
+            ]
+          },
+          {
+            "alias": "Temperatura Gimnasio",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "fBKzXRWgz"
+            },
+            "groupBy": [],
+            "hide": false,
+            "measurement": "°C",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "Temperatura Gimnasio",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "entity_id",
+                "operator": "=",
+                "value": "ble_temperature_gimnasio"
+              }
+            ]
+          },
+          {
+            "alias": "Temperatura Habitación",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "fBKzXRWgz"
+            },
+            "groupBy": [],
+            "hide": false,
+            "measurement": "°C",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "Temperatura habitación",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "entity_id",
+                "operator": "=",
+                "value": "ble_temperature_habitacion"
+              }
+            ]
+          }
+        ],
+        "title": "Temperatura",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "fBKzXRWgz"
+        },
+        "description": "Humedad registrada en la casa",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 13,
+              "gradientMode": "opacity",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "smooth",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 3,
+              "pointSize": 8,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "orange",
+                  "value": 60
+                },
+                {
+                  "color": "red",
+                  "value": 70
+                }
+              ]
+            },
+            "unit": "humidity"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 8
+        },
+        "id": 8,
+        "options": {
+          "legend": {
+            "calcs": [
+              "lastNotNull",
+              "mean"
+            ],
+            "displayMode": "table",
+            "placement": "right"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "targets": [
+          {
+            "alias": "Humedad AEMET",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "fBKzXRWgz"
+            },
+            "groupBy": [],
+            "hide": false,
+            "measurement": "%",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "Humedad AEMET",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "entity_id",
+                "operator": "=",
+                "value": "aemet_humidity"
+              }
+            ]
+          },
+          {
+            "alias": "Humedad dormitorio",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "fBKzXRWgz"
+            },
+            "groupBy": [],
+            "measurement": "%",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "Humedad Dormitorio",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "entity_id",
+                "operator": "=",
+                "value": "ble_humidity_dormitorio"
+              }
+            ]
+          },
+          {
+            "alias": "Humedad habitación",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "fBKzXRWgz"
+            },
+            "groupBy": [],
+            "hide": false,
+            "measurement": "%",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "Humedad Habitación",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "entity_id",
+                "operator": "=",
+                "value": "ble_humidity_habitacion"
+              }
+            ]
+          },
+          {
+            "alias": "Humedad salón",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "fBKzXRWgz"
+            },
+            "groupBy": [],
+            "hide": false,
+            "measurement": "%",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "Humedad Salón",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "entity_id",
+                "operator": "=",
+                "value": "ble_humidity_salon"
+              }
+            ]
+          },
+          {
+            "alias": "Humedad gimnasio",
+            "datasource": {
+              "type": "influxdb",
+              "uid": "fBKzXRWgz"
+            },
+            "groupBy": [],
+            "hide": false,
+            "measurement": "%",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "Humedad Gimnasio",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "entity_id",
+                "operator": "=",
+                "value": "ble_humidity_gimnasio"
+              }
+            ]
+          }
+        ],
+        "title": "Humedad",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "fBKzXRWgz"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "percentage",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "Mbits"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 3,
+          "x": 12,
+          "y": 16
+        },
+        "id": 4,
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true
+        },
+        "pluginVersion": "8.3.4",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "fBKzXRWgz"
+            },
+            "groupBy": [],
+            "measurement": "Mbit/s",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "entity_id",
+                "operator": "=",
+                "value": "speedtest_download"
+              }
+            ]
+          }
+        ],
+        "title": "Download Speed",
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "fBKzXRWgz"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "percentage",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "Mbits"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 3,
+          "x": 15,
+          "y": 16
+        },
+        "id": 6,
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "text": {}
+        },
+        "pluginVersion": "8.3.4",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "fBKzXRWgz"
+            },
+            "groupBy": [],
+            "measurement": "Mbit/s",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "title": "Upload Speed",
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "fBKzXRWgz"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "orange",
+                  "value": 60
+                },
+                {
+                  "color": "red",
+                  "value": 100
+                }
+              ]
+            },
+            "unit": "ms"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 3,
+          "x": 18,
+          "y": 16
+        },
+        "id": 2,
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true
+        },
+        "pluginVersion": "8.3.4",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "fBKzXRWgz"
+            },
+            "groupBy": [],
+            "measurement": "ms",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "entity_id",
+                "operator": "=",
+                "value": "speedtest_ping"
+              }
+            ]
+          }
+        ],
+        "title": "Ping",
+        "type": "gauge"
+      }
+    ],
+    "refresh": false,
+    "schemaVersion": 34,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Home Assistant Monitoring",
+    "uid": "Qi-VyaZgz",
+    "version": 11,
+    "weekStart": ""
+  }

@@ -1,0 +1,25 @@
+apiVersion: 1
+
+datasources:
+  - name: Telegraf
+    type: influxdb
+    access: proxy
+    database: ${INFLUXDB_DB}
+    user: ${INFLUXDB_USER_PASSWORD}
+    password: 
+    url: http://192.168.1.192:8086
+    jsonData:
+      httpMode: POST
+    secureJsonData:
+      password: ${INFLUXDB_USER_PASSWORD}
+  - name: HomeAssistant
+    type: influxdb
+    access: proxy
+    database: ${INFLUXDB_DB_2}
+    user: ${INFLUXDB_USER_PASSWORD}
+    password: 
+    url: http://192.168.1.192:8086
+    jsonData:
+      httpMode: POST
+    secureJsonData:
+      password: ${INFLUXDB_USER_PASSWORD}

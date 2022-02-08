@@ -1,0 +1,21 @@
+version: "2.1"
+services:
+  telegraf:
+    image: telegraf
+    container_name: telegraf_container
+    restart: unless-stopped
+    ports:
+      - 8125:8125
+      - 8092:8092
+      - 8094:8094
+    volumes:
+      - /:/hostfs:ro
+      - /opt/vc/bin/:/tmp/
+      - /opt/vc/lib:/opt/vc/lib
+      - ${HOME_DIR}/docker-config/telegraf/config:/etc/telegraf
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - HOST_MOUNT_PREFIX=/hostfs
+      - HOST_PROC=/hostfs/proc
+      - LD_LIBRARY_PATH=/opt/vc/lib

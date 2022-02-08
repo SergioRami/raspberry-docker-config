@@ -1,0 +1,51 @@
+version: "2.1"
+services:
+  bazarr:
+    extends:
+      file: bazarr.yml
+      service: bazarr
+  calibre-web:
+    extends:
+      file: calibre.yml
+      service: calibre-web
+  grafana:
+    extends:
+      file: grafana.yml
+      service: grafana
+  influxdb:
+    extends:
+      file: influxdb.yml
+      service: influxdb
+  jackett:
+    extends:
+      file: jackett.yml
+      service: jackett
+  plex:
+    extends:
+      file: plex.yml
+      service: plex
+  qbittorrent:
+    extends:
+      file: qbittorrent.yml
+      service: qbittorrent
+  radarr:
+    extends:
+      file: radarr.yml
+      service: radarr
+  readarr:
+    extends:
+      file: readarr.yml
+      service: readarr
+  sonarr:
+    extends:
+      file: sonarr.yml
+      service: sonarr
+  tautulli:
+    extends:
+      file: tautulli.yml
+      service: tautulli
+  telegraf:
+    extends:
+      file: telegraf.yml
+      service: telegraf
+

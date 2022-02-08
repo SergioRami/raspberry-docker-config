@@ -1,0 +1,16 @@
+version: "2.1"
+services:
+  grafana:
+    image: grafana/grafana
+    container_name: grafana_container
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    volumes:
+      - ${HOME_DIR}/docker-config/grafana/config:/etc/grafana
+      - ${HOME_DIR}/docker-config/grafana/data:/var/lib/grafana
+      - ${HOME_DIR}/docker-config/grafana/logs:/var/log/grafana
+      - ${HOME_DIR}/docker-config/grafana/plugins:/var/lib/grafana/plugins
+    environment:
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource,grafana-piechart-panel
+      - GF_USERS_ALLOW_SIGN_UP=false

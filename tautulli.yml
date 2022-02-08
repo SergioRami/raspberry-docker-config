@@ -1,0 +1,15 @@
+version: "2.1"
+services:
+  tautulli:
+    image: ghcr.io/linuxserver/tautulli
+    container_name: tautulli
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    volumes:
+      - ${HOME_DIR}/docker-config/tautulli:/config
+      - ${HOME_DIR}/plex/Library/Application Support/Plex Media Server/Logs:/logs
+    ports:
+      - 8181:8181
+    restart: unless-stopped

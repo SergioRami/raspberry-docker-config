@@ -1,0 +1,16 @@
+version: "2.1"
+services:
+  readarr:
+    image: ghcr.io/linuxserver/readarr:1.0.1083
+    container_name: readarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    volumes:
+      - /mnt/seagate/server/docker-config/readarr/config:/config
+      - /mnt/seagate/server/books:/books #optional
+      - /mnt/seagate/server/downloads:/downloads
+    ports:
+      - 8787:8787
+    restart: unless-stopped
