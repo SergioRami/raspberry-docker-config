@@ -1,0 +1,15 @@
+version: "2.1"
+services:
+  chronograf:
+    image: chronograf:1.8.10
+    container_name: chronograf_container
+    restart: unless-stopped
+    ports:
+      - 8888:8888
+    volumes:
+      - ${HOME_DIR}/docker-config/chronograf:/var/lib/chronograf
+    environment:
+      - INFLUXDB_URL=${INFLUXDB_URL}
+      - INFLUXDB_USERNAME=${INFLUXDB_USER}
+      - INFLUXDB_PASSWORD=${INFLUXDB_USER_PASSWORD}
+

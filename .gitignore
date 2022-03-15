@@ -13,6 +13,7 @@ readarr/
 sonarr/
 tautulli/
 telegraf/
+chronograf/
 
 #[Grafana]
 grafana/config/grafana.ini
