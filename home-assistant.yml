@@ -9,3 +9,6 @@ services:
       - TZ=Europe/Madrid
     restart: unless-stopped
     network_mode: host
+    logging:
+      options:
+        max-size: "50m"
